@@ -2,7 +2,7 @@
 
 import TaskSchema from "./TaskSchema.js";
 
-// Create data indb
+// Create data in db
 export const createTask = (taskObj) => {
   return TaskSchema(taskObj).save();
 };
@@ -11,12 +11,22 @@ export const readTasks = () => {
   return TaskSchema.find();
 };
 
-//id as a string
+//_id as an string
 export const switchTask = (_id, type) => {
-  return TaskSchema.findByIdAndUpdate(_id, { type: "bad" });
+  return TaskSchema.findByIdAndUpdate(_id, { type });
 };
 
-// delete data
+// delete one task
 export const deleteTaskById = (_id) => {
   return TaskSchema.findByIdAndDelete(_id);
+};
+
+// delete many task
+//@ids shuld be an array
+export const deleteManyTasks = (ids) => {
+  return TaskSchema.deleteMany({
+    _id: {
+      $in: ids,
+    },
+  });
 };

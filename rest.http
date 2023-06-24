@@ -1,13 +1,13 @@
 ### test call
-DELETE    http://localhost:8000
+DELETE http://localhost:8000
 
 # Task routers below
 
 ### read tasks api
-GET  http://localhost:8000/api/v1/task
+GET http://localhost:8000/api/v1/task
 
 ### read tasks api
-POST   http://localhost:8000/api/v1/task
+POST http://localhost:8000/api/v1/task
 Content-Type: application/json
 
 {
@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ### read tasks api
-PATCH   http://localhost:8000/api/v1/task
+PATCH http://localhost:8000/api/v1/task
 Content-Type: application/json
 
 {
@@ -26,4 +26,4 @@ Content-Type: application/json
 }
 
 ### delete tasks api
-DELETE  http://localhost:8000/api/v1/task/648677329fe50d24a7dc0fc9
+DELETE http://localhost:8000/api/v1/task/648677329fe50d24a7dc0fc9
