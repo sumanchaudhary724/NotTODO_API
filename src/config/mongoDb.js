@@ -4,7 +4,7 @@ export const mongoConnect = async () => {
   try {
     const dbLink =
       process.env.NODE_ENV !== "production"
-        ? "mongodb://localhost:27017/nottododb"
+        ? "mongodb://127.0.0.1:27017/nottododb"
         : process.env.MONGO_CLIENT;
 
     const con = await mongoose.connect(dbLink);

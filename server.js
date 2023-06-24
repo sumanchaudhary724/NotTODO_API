@@ -27,11 +27,11 @@ app.use("/", (req, res) => {
 
 const dbLink =
   process.env.NODE_ENV !== "production"
-    ? "mongodb://localhost:27017/nottododb"
+    ? "mongodb://127.0.0.1:27017/nottododb"
     : process.env.MONGO_CLIENT;
 
 mongoose
-  .connect(dbLink)
+  .connect(process.env.MONGO_CLIENT)
   .then(() => {
     console.log("mongo conneted");
     app.listen(PORT, (err) => {
