@@ -4,6 +4,7 @@ import {
   deleteTaskById,
   readTasks,
   switchTask,
+  deleteManyTasks,
 } from "../model/TaskModel.js";
 const router = express.Router();
 
@@ -65,17 +66,14 @@ router.patch("/", async (req, res) => {
   }
 });
 
-router.delete("/:_id", async (req, res) => {
+router.delete("/", async (req, res) => {
   try {
-    const { _id } = req.params;
-    const result = await deleteTaskById(_id);
+    const result = await deleteManyTasks(req.body);
 
-    console.log(result);
-
-    result?._id
+    result?.deletedCount > 0
       ? res.json({
           status: "success",
-          message: "The task has been deleted successfully",
+          message: "The tasks have been deleted successfully",
         })
       : res.json({
           status: "error",

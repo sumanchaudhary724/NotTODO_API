@@ -1,17 +1,15 @@
 import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 const app = express();
 import cors from "cors";
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 import path from "path";
-dotenv.config();
 
 const __dirname = path.resolve();
-console.log(__dirname);
 
 // connect mongodb
 import { mongoConnect } from "./src/config/mongoDb.js";
-mongoConnect();
 
 // middlewares
 app.use(express.json());
@@ -27,9 +25,15 @@ app.use("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+mongoConnect()
+  .then(() => {
+    app.listen(PORT, (err) => {
+      err
+        ? console.log(err.message)
+        : console.log(`Server running at http://localhost:${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.log(error.message);
+  });
 // open port for http request to access the server
-app.listen(PORT, (err) => {
-  err
-    ? console.log(err.message)
-    : console.log(`Server running at http://localhost:${PORT}`);
-});
