@@ -5,6 +5,7 @@ const app = express();
 import cors from "cors";
 const PORT = process.env.PORT || 8000;
 import path from "path";
+import mongoose from "mongoose";
 
 const __dirname = path.resolve();
 
@@ -15,7 +16,6 @@ app.use(express.static(__dirname + "/build"));
 
 // API endpoints
 import taskRouter from "./src/router/taskRouter.js";
-import mongoose from "mongoose";
 
 app.use("/api/v1/task", taskRouter);
 
@@ -29,7 +29,7 @@ const dbLink =
   process.env.NODE_ENV !== "production"
     ? "mongodb://127.0.0.1:27017/nottododb"
     : process.env.MONGO_CLIENT;
-
+console.log(process.env.MONGO_CLIENT);
 mongoose
   .connect(process.env.MONGO_CLIENT)
   .then(() => {
