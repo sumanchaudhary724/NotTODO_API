@@ -4,6 +4,7 @@ const app = express();
 import cors from "cors";
 const PORT = 8000;
 import path from "path";
+dotenv.config();
 
 const __dirname = path.resolve();
 console.log(__dirname);
