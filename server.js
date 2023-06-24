@@ -31,7 +31,7 @@ const dbLink =
     : "mongodb://127.0.0.1:27017/nottododb";
 console.log(process.env.MONGO_CLIENT);
 mongoose
-  .connect(process.env.MONGO_CLIENT)
+  .connect(dbLink)
   .then(() => {
     console.log("mongo conneted");
     app.listen(PORT, (err) => {
